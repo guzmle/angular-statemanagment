@@ -23,7 +23,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -124,6 +125,134 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "shopping": {
+      "root": "projects/shopping/",
+      "sourceRoot": "projects/shopping/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/shopping",
+            "index": "projects/shopping/src/index.html",
+            "main": "projects/shopping/src/main.ts",
+            "polyfills": "projects/shopping/src/polyfills.ts",
+            "tsConfig": "projects/shopping/tsconfig.app.json",
+            "assets": [
+              "projects/shopping/src/favicon.ico",
+              "projects/shopping/src/assets"
+            ],
+            "styles": [
+              "projects/shopping/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/shopping/src/environments/environment.ts",
+                  "with": "projects/shopping/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "shopping:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "shopping:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "shopping:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/shopping/src/test.ts",
+            "polyfills": "projects/shopping/src/polyfills.ts",
+            "tsConfig": "projects/shopping/tsconfig.spec.json",
+            "karmaConfig": "projects/shopping/karma.conf.js",
+            "styles": [
+              "projects/shopping/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/shopping/src/favicon.ico",
+              "projects/shopping/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/shopping/tsconfig.app.json",
+              "projects/shopping/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "shopping-e2e": {
+      "root": "projects/shopping-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/shopping-e2e/protractor.conf.js",
+            "devServerTarget": "shopping:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "shopping:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/shopping-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]

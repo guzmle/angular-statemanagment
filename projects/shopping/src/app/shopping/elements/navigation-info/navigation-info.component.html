@@ -1,0 +1,6 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" *ngFor="let item of items"><a (click)="goTo(item)">{{item.title}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{currentPage?.title}}</li>
+  </ol>
+</nav>

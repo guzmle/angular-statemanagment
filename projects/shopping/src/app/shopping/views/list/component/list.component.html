@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-3 pl-5 pt-5">
+    <ng-container *ngFor="let filter of filters">
+      <h5>{{filter.title}}</h5>
+      <div class="form-group form-check" *ngFor="let check of filter.children">
+        <input type="checkbox" class="form-check-input" [attr.id]="check.id">
+        <label class="form-check-label" [attr.for]="check.id">{{check.label}}</label>
+      </div>
+    </ng-container>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  <div class="col-8">
+    <div class="row">
+      <div class="col-3" *ngFor="let car of cars">
+        <div class="card">
+          <img class="card-img-top" src="https://picsum.photos/id/311/300/300" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{car.title}}</h5>
+            <div class="card-text"><small class="text-muted">2001 | 290000 km</small></div>
+            <div class="card-text"><small class="text-muted">Chevrolet 2012</small></div>
+            <div class="card-text"><small class="text-muted">Caracas</small></div>
+
+            <button class="btn btn-primary">Ver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
